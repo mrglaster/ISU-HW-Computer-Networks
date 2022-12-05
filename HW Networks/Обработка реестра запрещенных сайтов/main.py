@@ -18,14 +18,19 @@ def get_ip(domain):
     except:
         return None
 
-def webpage_check():
-    url = input()
+def webpage_check(url):
+    """Checks if the webpage is included to forbidden websites list"""
     domain = get_clear_domain(url)
     ip = get_ip(domain)
     dataframe = pd.read_csv(REGISTER_FILE, sep=SEPARATOR, on_bad_lines='skip')
-
+    
+    #Is there the current url in the registry?
     has_url = len(dataframe[dataframe.eq(url).any(1)]) >= 1
+    
+    #Is there the domain in the registry?
     has_domain = len(dataframe[dataframe.eq(domain).any(1)]) >= 1
+    
+    #Is there the IP in the registry?
     has_ip = len(dataframe[dataframe.eq(ip).any(1)]) >= 1
 
     if has_url:
@@ -41,4 +46,5 @@ def webpage_check():
 
 
 if __name__ == '__main__':
-    webpage_check()
+    url = input()
+    webpage_check(url)
