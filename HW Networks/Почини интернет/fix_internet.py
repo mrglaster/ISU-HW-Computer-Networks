@@ -1,3 +1,4 @@
+
 class Connection:
     def __init__(self, v1 ,v2):
         self.v1 = v1
@@ -41,7 +42,7 @@ def main():
     print("Connections:")
     for i in connections:
         print(i)
-
+    print("")
     islands = 0
     for i in range(len(visitedVertexes)):
         if i==0:
